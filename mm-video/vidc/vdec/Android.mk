@@ -60,7 +60,7 @@ ifeq ($(TARGET_QCOM_DISPLAY_VARIANT),caf)
 DISPLAY := display-caf
 libOmxVdec-def += -DDISPLAYCAF
 else
-DISPLAY := display
+DISPLAY := display/$(TARGET_BOARD_PLATFORM)
 endif
 
 libmm-vdec-inc          := bionic/libc/include
@@ -80,9 +80,9 @@ libmm-vdec-inc          += frameworks/av/include/media/stagefright
 libmm-vdec-inc          += hardware/qcom/$(DISPLAY)/libqservice
 libmm-vdec-inc          += frameworks/av/media/libmediaplayerservice
 libmm-vdec-inc          += frameworks/native/include/binder
-ifeq ($(DISPLAY),display-caf)
+#ifeq ($(DISPLAY),display-caf)
 libmm-vdec-inc          += hardware/qcom/$(DISPLAY)/libqdutils
-endif
+#endif
 
 
 LOCAL_MODULE                    := libOmxVdec
@@ -95,9 +95,9 @@ LOCAL_SHARED_LIBRARIES  := liblog libutils libbinder libcutils libdl
 
 LOCAL_SHARED_LIBRARIES  += libdivxdrmdecrypt
 LOCAL_SHARED_LIBRARIES += libqservice
-ifeq ($(DISPLAY),display-caf)
+#ifeq ($(DISPLAY),display-caf)
 LOCAL_SHARED_LIBRARIES  += libqdMetaData
-endif
+#endif
 
 LOCAL_SRC_FILES         := src/frameparser.cpp
 LOCAL_SRC_FILES         += src/h264_utils.cpp
